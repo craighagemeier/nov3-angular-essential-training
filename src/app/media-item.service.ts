@@ -9,7 +9,7 @@ import { throwError } from 'rxjs';
 export class MediaItemService {
   constructor(private http: HttpClient) {}
 
-  get(medium) {
+  get(medium: string) {
     const getOptions = {
       params: { medium }
     };
@@ -22,18 +22,22 @@ export class MediaItemService {
       );
   }
 
-  add(mediaItem) {
-    return this.http.post('mediaItems', mediaItem)
-      .pipe(catchError(this.handleError));
+  add(mediaItem: MediaItem) {
+    return this.http.post('mediaitems', mediaItem)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  delete(mediaItem) {
+  delete(mediaItem: MediaItem) {
     return this.http.delete(`mediaitems/${mediaItem.id}`)
-    .pipe(catchError(this.handleError));
+    .pipe(
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse) {
-    console.log(error.message);
+    console.error(error.message);
     return throwError('A data error occurred, please try again.');
   }
 }
