@@ -1,6 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
 import { MediaItemListComponent } from './media-item-list.component';
-import { MediaItemComponent } from './media-item.component';
 
 const appRoutes: Routes = [
   {
@@ -8,7 +7,7 @@ const appRoutes: Routes = [
     loadChildren: () => import('./new-item/new-item.module').then(m => m.NewItemModule)
   },
   { path: ':medium', component: MediaItemListComponent },
-  { path: '', redirectTo: 'all', pathMatch: 'full' }
+  { path: '', pathMatch: 'full', redirectTo: 'all' }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
